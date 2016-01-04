@@ -5,8 +5,9 @@
     token: null,
     userID: null,
     picture: null,
-    perms: "public_profile,user_photos",
-    appId: '267188576687915',
+    perms: "public_profile,user_photos,publish_actions",
+    appId: '1476442785996284',
+    shareCapition: 'http://2.iing.tw',
     afterLogin: function(response) {
       $fb.token = response.authResponse.accessToken;
       $fb.userID = response.authResponse.userID;
@@ -104,8 +105,7 @@
 
     Facebook.prototype.dialogLogin = function(callback) {
       return FB.login((function(response) {
-        callback(response);
-        return xx(response);
+        return callback(response);
       }), {
         scope: $fb.perms
       });
@@ -121,7 +121,7 @@
         return FB.api('/me/photos', 'post', {
           access_token: $fb.token,
           url: result.url,
-          caption: "http://iing.tw"
+          caption: $fb.shareCapition
         }, function(response) {
           var url;
 
