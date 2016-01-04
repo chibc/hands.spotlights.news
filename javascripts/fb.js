@@ -1,13 +1,16 @@
 (function() {
-  var Facebook;
+  var Facebook, fbappid;
+
+  fbappid = location.href.indexOf("iing.tw") >= 0 ? '1476442785996284' : '267188576687915';
 
   window.$fb = {
     token: null,
     userID: null,
     picture: null,
     perms: "public_profile,user_photos,publish_actions",
-    appId: '1476442785996284',
+    appId: fbappid,
     shareCapition: 'http://2.iing.tw',
+    afterPageLoad: function() {},
     afterLogin: function(response) {
       $fb.token = response.authResponse.accessToken;
       $fb.userID = response.authResponse.userID;
@@ -52,7 +55,7 @@
       xfbml: true,
       version: 'v2.5'
     });
-    $facebook.getLoginStatus();
+    $fb.afterPageLoad();
     $('.js-fb-login').on('click', function() {
       return $facebook.dialogLogin(function() {
         return $facebook.getLoginStatus();
