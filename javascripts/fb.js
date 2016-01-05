@@ -9,7 +9,7 @@
     picture: null,
     perms: "public_profile,user_photos,publish_actions",
     appId: fbappid,
-    shareCapition: 'http://2.iing.tw',
+    shareCapition: '',
     afterPageLoad: function() {},
     afterLogin: function(response) {
       $fb.token = response.authResponse.accessToken;
@@ -110,17 +110,29 @@
       return FB.login((function(response) {
         return callback(response);
       }), {
-        scope: $fb.perms
+        scope: $fb.perms,
+        return_scopes: true
+      });
+    };
+
+    Facebook.prototype.publishPost = function(imgurl) {
+      return FB.api('/me/feed', 'post', {
+        link: 'http://2.iing.tw',
+        picture: imgurl
+      }, function(response) {
+        return xx(response.id);
       });
     };
 
     Facebook.prototype.uploadPicture = function() {
-      var endpoing;
+      var endpoing, w;
 
-      endpoing = "http://staging.iing.tw/badges.json";
+      endpoing = "http://iing.tw/badges.json";
+      w = window.open("/waiting.html", "wait", "width=550, height=460, menubar=no, resizable=no, scrollbars=no, status=no, titlebar=no, toolbar=no");
       return $.post(endpoing, {
         data: getBase64()
       }, function(result) {
+        $facebook.publishPost(result.url);
         return FB.api('/me/photos', 'post', {
           access_token: $fb.token,
           url: result.url,
@@ -130,7 +142,7 @@
 
           if (response.id) {
             url = "https://m.facebook.com/photo.php?fbid=" + response.id + "&prof=1";
-            return window.open(url, "", "width=550, height=460, menubar=no, resizable=no, scrollbars=no, status=no, titlebar=no, toolbar=no");
+            return w.location.href = url;
           }
         });
       });
