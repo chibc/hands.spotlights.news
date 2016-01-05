@@ -14,7 +14,6 @@
     afterLogin: function(response) {
       $fb.token = response.authResponse.accessToken;
       $fb.userID = response.authResponse.userID;
-      $facebook.getUserPicture();
       return $('body').addClass('fb-connected');
     },
     notLogin: function() {
@@ -58,7 +57,9 @@
     $fb.afterPageLoad();
     $('.js-fb-login').on('click', function() {
       return $facebook.dialogLogin(function() {
-        return $facebook.getLoginStatus();
+        return $facebook.getLoginStatus(function() {
+          return $facebook.getUserPicture();
+        });
       });
     });
     return $('.js-fb-upload').on('click', function() {
@@ -66,7 +67,9 @@
         return $facebook.uploadPicture();
       } else {
         return $facebook.dialogLogin(function() {
-          return $facebook.getLoginStatus();
+          return $facebook.getLoginStatus(function() {
+            return $facebook.uploadPicture();
+          });
         });
       }
     });
@@ -89,7 +92,7 @@
       });
     };
 
-    Facebook.prototype.getLoginStatus = function() {
+    Facebook.prototype.getLoginStatus = function(callback) {
       $fb.beforeGetLoginStatus();
       return FB.getLoginStatus(function(response) {
         var status;
@@ -97,6 +100,7 @@
         status = response.status;
         if (status === 'connected') {
           $fb.afterLogin(response);
+          callback();
         } else if (status === 'not_authorized') {
           $fb.notLogin();
         } else {
@@ -125,21 +129,14 @@
     };
 
     Facebook.prototype.uploadPicture = function() {
-      var endpoing, w;
-
-      endpoing = "http://iing.tw/badges.json";
-      w = window.open("/waiting.html", "wait", "width=550, height=460, menubar=no, resizable=no, scrollbars=no, status=no, titlebar=no, toolbar=no");
-      return $.post(endpoing, {
-        data: getBase64()
-      }, function(result) {
-        $facebook.publishPost(result.url);
+      return $util.uploadBase64(getBase64(), function(url, w) {
+        $facebook.publishPost(url);
         return FB.api('/me/photos', 'post', {
           access_token: $fb.token,
-          url: result.url,
+          url: url,
           caption: $fb.shareCapition
         }, function(response) {
-          var url;
-
+          w.resizeTo(550, 460);
           if (response.id) {
             url = "https://m.facebook.com/photo.php?fbid=" + response.id + "&prof=1";
             return w.location.href = url;

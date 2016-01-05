@@ -61,6 +61,18 @@
       return parseFloat(string.replace('px', ''));
     };
 
+    Util.prototype.uploadBase64 = function(base64, callback) {
+      var endpoing, w;
+
+      endpoing = "http://iing.tw/badges.json";
+      w = window.open("/waiting.html", "wait", "width=500, height=500, menubar=no, resizable=no, scrollbars=no, status=no, titlebar=no, toolbar=no");
+      return $.post(endpoing, {
+        data: base64
+      }, function(result) {
+        return callback(result.url, w);
+      });
+    };
+
     return Util;
 
   })();
