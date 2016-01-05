@@ -136,7 +136,7 @@
           url: url,
           caption: $fb.shareCapition
         }, function(response) {
-          w.resizeTo(550, 460);
+          $util.resizeWindow(w, 520, 400);
           if (response.id) {
             url = "https://m.facebook.com/photo.php?fbid=" + response.id + "&prof=1";
             return w.location.href = url;

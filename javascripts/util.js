@@ -73,6 +73,15 @@
       });
     };
 
+    Util.prototype.resizeWindow = function(w, width, height) {
+      if (w.outerWidth) {
+        return w.resizeTo(width + (w.outerWidth - w.innerWidth), height + (w.outerHeight - w.innerHeight));
+      } else {
+        w.resizeTo(500, 500);
+        return w.resizeTo(width + (500 - w.document.body.offsetWidth), height + (500 - w.document.body.offsetHeight));
+      }
+    };
+
     return Util;
 
   })();

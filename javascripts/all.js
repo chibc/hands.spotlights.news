@@ -24,7 +24,7 @@ $(window).load(function() {
   container_size = $userimage.width(),
   userimage_size = $util.getImgSize($util.getBackgroundImageUrl($userimage));
   pos = resizeDragger(userimage_size,container_size);
-  nonImageLoadState();
+  // nonImageLoadState();
   resetUserImage(pos)
 });
 
@@ -203,7 +203,7 @@ function downloadImage(){
     tab.document.write(html);
   } else {
     $util.uploadBase64(base64 ,function(url, w) {
-      w.resizeTo(500, 500)
+      $util.resizeWindow(w, 500, 500)
       w.location.href = url
     })
     // 原本的 download 方式
