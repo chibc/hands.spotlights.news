@@ -61,11 +61,29 @@
       return parseFloat(string.replace('px', ''));
     };
 
+    Util.prototype.downloadByBase64 = function(base64, callback) {
+      return $util.uploadBase64(base64, function(url, w) {
+        if ($util.isDesktop() && !$util.isSafari()) {
+          return $util.urlToBlob(url, function(blob) {
+            w.close();
+            return saveAs(blob, 'iing-no-2.png');
+          });
+        } else {
+          return callback(url, w);
+        }
+      });
+    };
+
     Util.prototype.uploadBase64 = function(base64, callback) {
-      var endpoing, w;
+      var directDownload, endpoing, w;
 
       endpoing = "http://iing.tw/badges.json";
-      w = window.open("/waiting.html", "wait", "width=500, height=500, menubar=no, resizable=no, scrollbars=no, status=no, titlebar=no, toolbar=no");
+      directDownload = false;
+      if ($util.isFBWebview()) {
+        w = window;
+      } else {
+        w = window.open("/waiting.html", "wait", "width=500, height=500, menubar=no, resizable=no, scrollbars=no, status=no, titlebar=no, toolbar=no");
+      }
       return $.post(endpoing, {
         data: base64
       }, function(result) {
@@ -80,6 +98,18 @@
         w.resizeTo(500, 500);
         return w.resizeTo(width + (500 - w.document.body.offsetWidth), height + (500 - w.document.body.offsetHeight));
       }
+    };
+
+    Util.prototype.isFBWebview = function() {
+      return navigator.userAgent.match(/FB/);
+    };
+
+    Util.prototype.isDesktop = function() {
+      return WURFL.form_factor === 'Desktop';
+    };
+
+    Util.prototype.isSafari = function() {
+      return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     };
 
     return Util;
