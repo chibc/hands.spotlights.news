@@ -89,7 +89,7 @@
         method: 'post',
         url: endpoing,
         data: { image: base64, type: "base64" },
-        headers: 'Authorization': 'Client-ID ' + clientId,
+        headers: { 'Authorization': 'Client-ID ' + clientId },
         success: function(result) {
           callback(result.data.link, w)
         }
