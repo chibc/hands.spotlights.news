@@ -1525,7 +1525,7 @@ input#uploadInput {
     text-align: center;
     min-height: 440px;
     height: 90vh;
-    background-image: url("/images/img-mobile-bottom.png");
+    /*background-image: url("/images/img-mobile-bottom.png");*/
     background-repeat: no-repeat;
     background-position: left top
 }
