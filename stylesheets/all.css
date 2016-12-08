@@ -1639,7 +1639,7 @@ input#uploadInput {
     .action-section {
         height: 80vh;
         min-height: 480px;
-        background-image: url("/images/img-bottom.png");
+        /*background-image: url("/images/img-bottom.png");*/
         background-position: 20% 70%;
         -webkit-background-size: cover;
         -moz-background-size: cover;
