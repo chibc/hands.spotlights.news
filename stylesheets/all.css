@@ -1589,11 +1589,6 @@ input#uploadInput {
     transition: opacity 0.5s
 }
 
-.fb-connected .action-section .js-fb-upload:after {
-    content: "點擊後若無反應，請再次點擊";
-    opacity: 1
-}
-
 .action-section .icon-facebook {
     text-indent: -119988px;
     overflow: hidden;
