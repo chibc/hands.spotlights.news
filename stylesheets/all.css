@@ -341,12 +341,12 @@ dl dd {
 }
 
 a {
-    color: #3e946a;
+    color: #666;
     text-decoration: none
 }
 
 a:hover {
-    color: #37825d
+    color: #666
 }
 
 a:hover {
@@ -1523,26 +1523,12 @@ input#uploadInput {
     box-sizing: border-box;
     position: relative;
     text-align: center;
-    min-height: 440px;
-    height: 90vh;
-    /*background-image: url("/images/img-mobile-bottom.png");*/
     background-repeat: no-repeat;
     background-position: left top
 }
 
 .action-section .container {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 45%;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    transform: translateY(-50%)
+    
 }
 
 .action-section .container:after {
@@ -1558,9 +1544,10 @@ input#uploadInput {
 
 .action-section .btn {
     display: block;
-    margin: 0 auto 0px;
+    margin: 6px auto;
     padding: 9px 24px;
-    width: 100%
+    width: 100%;
+    max-width: 240px;
 }
 
 .action-section .icon-facebook, .action-section .icon-download {
@@ -1606,6 +1593,11 @@ input#uploadInput {
     background-size: contain
 }
 
+.fb-connected .action-section .js-fb-upload:after {
+    content: "點擊後若無反應，請再次點擊";
+    opacity: 1
+}
+
 .action-section .icon-download {
     position: relative;
     top: -3px;
@@ -1626,41 +1618,19 @@ input#uploadInput {
 }
 
 .action-section .copyright {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    bottom: 0;
-    margin-bottom: 24px;
-    font-size: 15px;
-    line-height: 24px
+    margin: 200px auto 48px;
+    color: #ccc;
+    width: 80%;
+}
+.action-section .copyright a {
+  white-space: nowrap;
 }
 
 @media (min-width: 640px) {
-    .action-section {
-        height: 80vh;
-        min-height: 480px;
-        /*background-image: url("/images/img-bottom.png");*/
-        background-position: 20% 70%;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover
-    }
 
     .action-section .btn {
         display: inline-block;
         margin: 0 6px
-    }
-
-    .action-section .copyright {
-        margin-bottom: 48px
-    }
-}
-
-@media (min-width: 960px) {
-    .action-section {
-        height: 70vh;
-        min-height: 600px
     }
 }
 

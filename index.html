@@ -27,14 +27,26 @@
       background-color: white !important;
     }
     .header h1 { text-align: center; line-height: 2; font-size: 20px; margin-top: 1em;}
-    .header p {
+    .header p,
+    .header .upload-image {
       text-align: justify;
       text-justify: inter-ideograph;
       width: 80%;
-      max-width: 40em;
+      max-width: 640px;
       margin: 0 auto;
     }
-
+    .header .upload-image {
+      text-align: center;
+    }
+    .header .upload-image-row {
+      display: inline-block;
+      margin: 6px;
+    }
+    .editor-section {
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+    
   </style>
 </head>
 
@@ -42,14 +54,14 @@
   <div class="header">
     <h1 class="logo">婚姻平權，共同爭取 🌈 ❤️ 許毓仁</h1>
     <p>我們發現民眾對婚姻平權法案的誤解，多來自於網路的不實訊息。污名化LGBT族群的資訊，不應成為反對修改民法的依據。換上頭像的朋友們，為了讓我們能好好教育下一代，一起加油！</p>
+    <div class="upload-image">
+      <div class="upload-image-row"><a class="btn uploadBtn">上傳自己的圖片</a></div> 或 <div class="upload-image-row"><a class="btn btn_facebook js-fb-login">取得自己的臉書頭像</a></div>
+    </div>
   </div>
   <div class="editor-section" id="editor-section">
     <div class="container">
       <div id="generator"></div>
       <div class="editor-row">
-        <div class="upload-image">
-          <div class="upload-image-inner"><div class="upload-image-row"><a class="btn btn_secondary uploadBtn">上傳圖片</a></div><div class="upload-image-row"><a class="btn btn_facebook js-fb-login">匯入臉書頭像</a></div></div>
-        </div>
         <div class="preview">
           <div class="preview-image">
             <div id="userimage">
@@ -96,11 +108,16 @@
             <input autocomplete="off" name="template" type="radio" value="13">
           </label>
         </div>
-        <div class="finish-editor action-section"> <a class="share btn btn_facebook js-fb-upload"><i class="icon-facebook"></i>直接換臉書頭像</a> <span class="or">或</span> <button class="download btn btn_primary" id="normalSubmit"><i class="icon-download"></i>下載圖片</button></div>
       </div>
     </div>
   </div>
-
+<div class="action-section" id="action-section">
+  <div class="container">
+    <p class="tip">現在就換上頭像，
+      <br class="word-break-on-phone">12/10 我們一起去凱道見證平權！</p>
+    <button class="download btn" id="normalSubmit"><i class="icon-download"></i>下載圖片</button> 或 <a class="share btn btn_facebook js-fb-upload"><i class="icon-facebook"></i>直接換臉書頭像</a></div>
+  <p class="copyright"><a href="http://www.jhsu.tw">許毓仁</a> / <a href="http://whitelightmotion.tv">Rex 白輻射影像</a> / <a href="http://fb.com/evenwu">Even 吳姓網友</a> / <a href="http://fb.com/5fpro/">5FPRO</a> </p>
+</div>
   <form action="#" onsubmit="return false;">
     <input id="uploadInput" name="Filedata" type="file">
     <div id="uploading">圖片讀取中，請稍後</div>
