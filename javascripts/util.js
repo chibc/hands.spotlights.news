@@ -75,20 +75,30 @@
     };
 
     Util.prototype.uploadBase64 = function(base64, callback) {
-      var directDownload, endpoing, w;
-
-      endpoing = "http://iing.tw/badges.json";
+      var directDownload, endpoing, w, clientId;
+      clientId = "d80f169cac97fa2";
+      endpoing = "https://api.imgur.com/3/upload";
       directDownload = false;
       if ($util.isFBWebview()) {
         w = window;
       } else {
         w = window.open("/waiting.html", "wait", "width=500, height=500, menubar=no, resizable=no, scrollbars=no, status=no, titlebar=no, toolbar=no");
       }
-      return $.post(endpoing, {
-        data: base64
-      }, function(result) {
-        return callback(result.url, w);
-      });
+      base64 = base64.split(',').pop()
+      return $.ajax({
+        method: 'post',
+        url: endpoing,
+        data: { image: base64, type: "base64" },
+        headers: 'Authorization': 'Client-ID ' + clientId,
+        success: function(result) {
+          callback(result.data.link, w)
+        }
+      })
+      // return $.post(endpoing, {
+      //   data: base64
+      // }, function(result) {
+      //   return callback(result.url, w);
+      // });
     };
 
     Util.prototype.resizeWindow = function(w, width, height) {
