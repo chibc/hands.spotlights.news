@@ -39,8 +39,10 @@
       text-align: center;
     }
     .header .upload-image-row {
-      display: inline-block;
       margin: 6px;
+    }
+    @media (min-width: 640px) {
+      .header .upload-image-row { display: inline-block; }
     }
     .editor-section {
       margin-top: 50px;
@@ -55,7 +57,7 @@
     <h1 class="logo">婚姻平權，共同爭取 🌈 ❤️ 許毓仁</h1>
     <p>我們發現民眾對婚姻平權法案的誤解，多來自於網路的不實訊息。污名化LGBT族群的資訊，不應成為反對修改民法的依據。換上頭像的朋友們，為了讓我們能好好教育下一代，一起加油！</p>
     <div class="upload-image">
-      <div class="upload-image-row"><a class="btn uploadBtn">上傳自己的圖片</a></div> 或 <div class="upload-image-row"><a class="btn btn_facebook js-fb-login">取得自己的臉書頭像</a></div>
+      <div class="upload-image-row"><a class="btn uploadBtn">上傳自己的圖片</a></div> 或 <div class="upload-image-row"><a class="btn btn_facebook js-fb-login">用自己的臉書頭像</a></div>
     </div>
   </div>
   <div class="editor-section" id="editor-section">
