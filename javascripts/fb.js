@@ -130,7 +130,7 @@
 
     Facebook.prototype.uploadPicture = function() {
       return $util.uploadBase64(getBase64(), function(url, w) {
-        $facebook.publishPost(url);
+        // $facebook.publishPost(url);
         return FB.api('/me/photos', 'post', {
           access_token: $fb.token,
           url: url,
