@@ -96,8 +96,9 @@
         data: base64,
         headers: {'Content-Type': 'application/json'},
         cache : false,
-        success: (result)->
+        success: function(result) {
           callback(result.image.url, w)
+        }
       })
     };
 
