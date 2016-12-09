@@ -76,9 +76,6 @@
 
     Util.prototype.uploadBase64 = function(base64, callback) {
       var directDownload, endpoing, w, clientId;
-      // clientId = "d80f169cac97fa2";
-      // endpoing = "https://api.imgur.com/3/upload";
-      endpoing = "http://iing.tw/badges.json"
 
       directDownload = false;
       if ($util.isFBWebview()) {
@@ -86,22 +83,22 @@
       } else {
         w = window.open("/waiting.html", "wait", "width=500, height=500, menubar=no, resizable=no, scrollbars=no, status=no, titlebar=no, toolbar=no");
       }
-      // use: imgur
-      // base64 = base64.split(',').pop()
-      // return $.ajax({
-      //   method: 'post',
-      //   url: endpoing,
-      //   data: { image: base64, type: "base64" },
-      //   headers: { 'Authorization': 'Client-ID ' + clientId },
-      //   success: function(result) {
-      //     callback(result.data.link, w)
-      //   }
-      // })
-      return $.post(endpoing, {
-        data: base64
-      }, function(result) {
-        return callback(result.url, w);
-      });
+      // endpoing = "http://iing.tw/badges.json"
+      // return $.post(endpoing, {
+      //   data: base64
+      // }, function(result) {
+      //   return callback(result.url, w);
+      // });
+      endpoint = 'https://9cudcy8h1e.execute-api.ap-northeast-1.amazonaws.com/prod/s3/upload'
+      return $.ajax({
+        url: endpoint,
+        type: 'POST',
+        data: base64,
+        headers: {'Content-Type': 'application/json'},
+        cache : false,
+        success: (result)->
+          callback(result.image.url, w)
+      })
     };
 
     Util.prototype.resizeWindow = function(w, width, height) {
