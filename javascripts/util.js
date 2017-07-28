@@ -92,7 +92,7 @@
         var timestamp = +(new Date());
         var objectName= timestamp + '_'+Math.random()+'.png';
         var data = new FormData()
-        data.append('image',base64.replace('data:image/png;base64,','')
+        data.append('image',base64.replace('data:image/png;base64,',''),
             data.append('type','base64')
       endpoint = 'https://api.imgur.com/3/image'
       return $.ajax({
