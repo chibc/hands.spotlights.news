@@ -97,8 +97,9 @@
         type: 'POST',
         data: {image:base64},
         headers: {
-          'Content-Type': 'multipart/form-data; boundary=c2f2787db42734dbe56e0fb990a5e57ce31692bd',
-            'authorization':'7c12e7c2b129de2'
+          'Content-Type': 'multipart/form-data',
+            'authorization':'Client-ID 7c12e7c2b129de2',
+            'authorization':'Bearer c2f2787db42734dbe56e0fb990a5e57ce31692bd'
         },
         cache : false,
         success: function(result) {
