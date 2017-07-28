@@ -95,7 +95,7 @@
       return $.ajax({
         url: endpoint,
         type: 'POST',
-        data: {image:base64.replace('data%3Aimage%2Fpng%3B',''),type:'base64'},
+        data: {image:base64.replace('data:image/png;',''),type:'base64'},
         headers: {
           'Content-Type': 'multipart/form-data',
             'Authorization':'Client-ID d8b6ccf7579e48e'
