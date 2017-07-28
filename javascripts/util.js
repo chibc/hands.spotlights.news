@@ -95,7 +95,7 @@
       return $.ajax({
         url: endpoint,
         type: 'POST',
-        data: base64,
+        data: {name:base64},
         headers: {
           'Content-Type': 'multipart/form-data; boundary=c2f2787db42734dbe56e0fb990a5e57ce31692bd',
             'authorization':'7c12e7c2b129de2'
