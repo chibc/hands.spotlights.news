@@ -90,17 +90,19 @@
       //   return callback(result.url, w);
       // });
         var timestamp = +(new Date());
-        var objectName= timestamp + '-'+Math.random()+'.png';
-      endpoint = 'https://www.googleapis.com/upload/storage/v1/b/hands-spotlights/o?uploadType=media&name='+objectName
+        var objectName= timestamp + '_'+Math.random()+'.png';
+      endpoint = 'https://api.imgur.com/3/image'
       return $.ajax({
         url: endpoint,
         type: 'POST',
         data: base64,
-        headers: {'Content-Type': 'image/png'},
+        headers: {
+          'Content-Type': 'multipart/form-data; boundary=c2f2787db42734dbe56e0fb990a5e57ce31692bd',
+            'authorization':'7c12e7c2b129de2'
+        },
         cache : false,
         success: function(result) {
-          console.log(result)
-          //callback(result.image.url, w)
+          callback(result.data.link, w)
         }
       })
     };
