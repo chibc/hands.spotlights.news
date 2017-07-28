@@ -98,7 +98,7 @@
         data: {image:base64},
         headers: {
           'Content-Type': 'multipart/form-data',
-            'Authorization':'Client-ID 7c12e7c2b129de2'
+            'Authorization':'Client-ID d8b6ccf7579e48e'
         },
         cache : false,
         success: function(result) {
