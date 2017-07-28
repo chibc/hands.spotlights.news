@@ -89,15 +89,18 @@
       // }, function(result) {
       //   return callback(result.url, w);
       // });
-      endpoint = 'https://9cudcy8h1e.execute-api.ap-northeast-1.amazonaws.com/prod/s3/upload'
+        var timestamp = +(new Date());
+        var objectName= timestamp + '-'+Math.random()+'.png';
+      endpoint = 'https://www.googleapis.com/upload/storage/v1/b/hands-spotlights/o?uploadType=media&name='+objectName
       return $.ajax({
         url: endpoint,
         type: 'POST',
         data: base64,
-        headers: {'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'image/png'},
         cache : false,
         success: function(result) {
-          callback(result.image.url, w)
+          console.log(result)
+          //callback(result.image.url, w)
         }
       })
     };
